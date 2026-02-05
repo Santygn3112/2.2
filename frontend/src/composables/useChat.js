@@ -1,4 +1,4 @@
-import { ref, onMounted } from 'vue'; // <--- Importamos onMounted
+import { ref, onMounted } from 'vue';
 import { enviarMensajeAPI } from '../api/chatApi';
 
 export function useChat() {
@@ -8,11 +8,10 @@ export function useChat() {
   const usuarioActual = ref('Invitado');    
   const historialSesion = ref([]);          
 
-  // --- NUEVO: LÓGICA DE PERSISTENCIA ---
   const SESSION_KEY = 'ia22_session';
-  const EXPIRATION_TIME = 24 * 60 * 60 * 1000; // 24 horas en milisegundos
+  const EXPIRATION_TIME = 24 * 60 * 60 * 1000;
 
-  // Al cargar la app, comprobamos si hay sesión guardada
+  // Al cargar la app comprobamos si hay sesión guardada
   const restaurarSesion = () => {
     const sesionGuardada = localStorage.getItem(SESSION_KEY);
     
@@ -24,10 +23,9 @@ export function useChat() {
         // Si la sesión no ha caducado
         if (ahora < data.expiracion) {
           usuarioActual.value = data.usuario;
-          // Opcional: Podrías guardar también el historialSesion en localStorage
-          return true; // Devolvemos true para indicar que recuperamos sesión
+          return true; 
         } else {
-          // Si caducó, limpiamos
+          // Si caducó limpiamos
           localStorage.removeItem(SESSION_KEY);
         }
       } catch (e) {
@@ -87,7 +85,7 @@ export function useChat() {
     mensajes.value = []; 
   };
 
-  // MODIFICADO: Ahora guarda en localStorage al hacer login
+  // Guarda en localStorage al hacer login
   const login = (nombre) => {
     usuarioActual.value = nombre;
     
@@ -111,6 +109,6 @@ export function useChat() {
     enviarMensaje,
     nuevoChat,
     login,
-    restaurarSesion // <--- Exportamos esta función nueva
+    restaurarSesion 
   };
 }

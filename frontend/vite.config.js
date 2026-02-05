@@ -6,6 +6,6 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [
     vue(),
-    tailwindcss(), // <--- ¡Esta es la clave de la nueva versión!
+    tailwindcss(), 
   ],
 })

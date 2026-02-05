@@ -1,6 +1,3 @@
-// src/api/chatApi.js
-
-// La URL de tu backend FastAPI (asegúrate de que el puerto 8000 es correcto)
 const API_URL = 'http://127.0.0.1:8000/api/chat';
 
 export const enviarMensajeAPI = async (texto, modelo, usuario) => { 

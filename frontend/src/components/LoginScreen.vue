@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue';
 
-// Definimos los eventos que este componente envía al padre (App.vue)
 const emit = defineEmits(['login-exitoso', 'entrar-invitado']);
 
 const esRegistro = ref(false); // Alternar entre Login y Registro
@@ -15,7 +14,7 @@ const form = ref({
   password: ''
 });
 
-// Llamada a TU API (Backend)
+// Llamada a API 
 const procesarFormulario = async () => {
   errorMsg.value = '';
   cargando.value = true;
@@ -36,13 +35,12 @@ const procesarFormulario = async () => {
     
     // Si es registro, cambiamos a login o logueamos directamente
     if (esRegistro.value) {
-        // Autologin después de registro (opcional, aquí simplificamos volviendo al login)
+        // Autologin después de registro 
         esRegistro.value = false;
         errorMsg.value = "¡Cuenta creada! Ahora inicia sesión.";
         // Limpiar password
         form.value.password = '';
     } else {
-        // LOGIN EXITOSO: Avisamos a App.vue
         emit('login-exitoso', data.usuario);
     }
 
