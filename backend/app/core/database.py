@@ -3,10 +3,9 @@ from pymongo.errors import ConnectionFailure
 import os
 from dotenv import load_dotenv
 
-# Cargar variables de entorno desde el archivo .env (que crearemos ahora)
+# Cargar variables de entorno desde el archivo .env
 load_dotenv()
 
-# Recuperamos la URI de las variables de entorno (¡Nunca hardcodeada en el código final!)
 MONGO_URI = os.getenv("MONGO_URI")
 
 
@@ -28,7 +27,6 @@ class Database:
         """Devuelve la instancia de la base de datos específica del proyecto."""
         if self.client is None:
             self.connect()
-        # Aquí usamos el nombre de tu base de datos definido en tu script original
         return self.client["IA_2_2"]
 
     def close(self):
@@ -38,5 +36,4 @@ class Database:
             print("Conexión a MongoDB cerrada")
 
 
-# Instancia global para usar en el resto de la app
 db = Database()

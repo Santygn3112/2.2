@@ -5,7 +5,7 @@ from typing import Optional
 
 # Lo que llega del Frontend
 class MensajeUsuario(BaseModel):
-    mensaje: str
+    mensaje: str = Field(..., max_length=1000)
     modelo: str
     usuario: str = "Invitado"
 

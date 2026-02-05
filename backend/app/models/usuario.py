@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr
 from typing import Optional
 
 
@@ -15,9 +15,9 @@ class UsuarioLogin(BaseModel):
     password: str
 
 
-# Lo que guardamos en la BD (La password no se guarda en texto plano, se hashea)
+# Lo que guardamos en la BD
 class UsuarioDB(BaseModel):
     id: Optional[str] = None
     nombre: str
     email: str
-    hashed_password: str  # <--- Importante: Guardamos el hash, no la clave real
+    hashed_password: str
